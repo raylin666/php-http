@@ -50,11 +50,6 @@ class Request extends Message implements RequestInterface
     const METHOD_OPTIONS = 'OPTIONS';
 
     /**
-     * 默认 HOST 地址
-     */
-    const DEFAULT_HOST = '::1';
-
-    /**
      * 请求方式
      * @var string
      */
