@@ -653,38 +653,6 @@ class Response extends Message implements ResponseInterface
     }
 
     /**
-     * Json Response Format
-     * @param null  $data
-     * @param int   $status
-     * @param array $headers
-     * @return $this
-     */
-    public function toJson($data = null, $status = Response::HTTP_OK, array $headers = []): Response
-    {
-        if (! is_null($data)) {
-            $data = json_encode($data, JSON_UNESCAPED_UNICODE);
-            $this->withContentType(Response::HEADER_CONTENTTYPE_JSON);
-        }
-
-        parent::__construct($data, $status, $headers);
-        return $this;
-    }
-
-    /**
-     * Redirect URI
-     * @param       $uri
-     * @param int   $status
-     * @param array $headers
-     * @return $this
-     */
-    public function toRedirect($uri, $status = Response::HTTP_FOUND, array $headers = []): Response
-    {
-        parent::__construct('', $status, $headers);
-        $this->withLocation($uri);
-        return $this;
-    }
-
-    /**
      * Returns the Response as an HTTP string.
      *
      * The string representation of the Response is the same as the
