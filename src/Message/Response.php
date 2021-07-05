@@ -247,7 +247,7 @@ class Response extends Message implements ResponseInterface
                 $this->getStatusCode()
             );
 
-            foreach ($this->header as $name => $value) {
+            foreach ($this->headers as $name => $value) {
                 $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
                 header(sprintf('%s: %s', $name, implode(',', $value)), false, $this->statusCode);
             }
@@ -664,7 +664,7 @@ class Response extends Message implements ResponseInterface
     public function __toString()
     {
         $headerLine = '';
-        foreach ($this->header as $name => $value) {
+        foreach ($this->headers as $name => $value) {
             $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
             $headerLine .= $name . ': ' . $this->getHeaderLine($name) . "\r\n";
         }
