@@ -747,4 +747,14 @@ class Response extends Message implements ResponseInterface
 
         return $this->reasonPhrase;
     }
+
+    /**
+     * @param array $statusTests
+     * @return array
+     */
+    public static function mergedStatusTexts(array $statusTests): array
+    {
+        static::$statusTexts + $statusTests;
+        return static::$statusTexts;
+    }
 }
