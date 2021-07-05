@@ -13,6 +13,7 @@ namespace Raylin666\Http\Message;
 
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
 /**
@@ -74,6 +75,22 @@ class Request extends Message implements RequestInterface
      * @var UriInterface
      */
     protected $uri;
+
+    /**
+     * Request constructor.
+     * @param null                 $uri
+     * @param string               $method
+     * @param array                $headers
+     * @param StreamInterface|null $body
+     */
+    public function __construct($uri = null, $method = self::METHOD_GET, array $headers = [], StreamInterface $body = null)
+    {
+        $this->withMethod($method);
+        $this->withUri(new Uri($uri));
+        $this->withHeader($headers);
+
+        parent::__construct($body);
+    }
 
     /**
      * 获取消息的请求目标。

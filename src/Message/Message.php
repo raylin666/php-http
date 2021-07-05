@@ -45,6 +45,21 @@ class Message implements MessageInterface
     protected $stream;
 
     /**
+     * Message constructor.
+     * @param StreamInterface|null $stream
+     * @param string               $streamType
+     * @param string               $streamMode
+     */
+    public function __construct(StreamInterface $stream = null, $streamType = Stream::STREAM_MEMORY, $streamMode = 'wb+')
+    {
+        if (null === $stream) {
+            $stream = new Stream($streamType, $streamMode);
+        }
+
+        $this->withBody($stream);
+    }
+
+    /**
      * 获取字符串形式的 HTTP 协议版本信息。
      *
      * 字符串 **必须** 包含 HTTP 版本数字（如：「1.1」, 「1.0」）。
@@ -159,6 +174,25 @@ class Message implements MessageInterface
 
         $value = $this->getHeader($name);
         return empty($value) ? '' : implode(',', $value);
+    }
+
+    /**
+     * @param array $headers
+     * @return $this
+     */
+    public function withHeaders(array $headers): Message
+    {
+        foreach ($headers as $key => $header) {
+            if (is_array($header)) {
+                foreach ($header as $item) {
+                    $this->withAddedHeader($key, $item);
+                }
+            } else {
+                $this->withHeader($key, $header);
+            }
+        }
+
+        return $this;
     }
 
     /**

@@ -22,8 +22,6 @@ composer require "raylin666/http"
 
 HTTP 组件封装了常用的服务端解释,客户端请求,并且友好集成 Swoole Http Server 解析，实现PSR-7。
 
-
-
 ## 更新日志
 
 请查看 [CHANGELOG.md](CHANGELOG.md)
