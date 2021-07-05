@@ -724,6 +724,8 @@ class Response extends Message implements ResponseInterface
 
         if (null === $reasonPhrase) {
             $this->reasonPhrase = isset(static::$statusTexts[$this->statusCode]) ? static::$statusTexts[$this->statusCode] : 'Unknown phrase';
+        } else {
+            $this->reasonPhrase = $reasonPhrase;
         }
 
         return $this;
