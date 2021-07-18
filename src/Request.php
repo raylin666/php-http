@@ -46,7 +46,7 @@ class Request extends ServerRequest
         array $serverParams = []
     )
     {
-        parent::__construct($method, $uri, $headers, $body);
+        parent::__construct($uri, $method, $headers, $body);
 
         $this
             ->withServerParams($serverParams)
