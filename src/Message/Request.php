@@ -87,7 +87,7 @@ class Request extends Message implements RequestInterface
     {
         $this->withMethod($method);
         $this->withUri(new Uri($uri));
-        $this->withHeader($headers);
+        $this->withHeaders($headers);
 
         parent::__construct($body);
     }
